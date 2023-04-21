@@ -1,9 +1,14 @@
 {
   "perfil": [
     {
-      "nombre": "Harland Lohora",
-      "email": "harland@alura.com",
+      "nombre": "Jesus Infante",
+      "email": "andres@alura.com",
       "id": 1
+    },
+    {
+      "nombre": "Juliana Lopez",
+      "email": "juliana@alura.com",
+      "id": 2
     }
   ]
 }
