@@ -2,7 +2,7 @@ import { clientServices } from "../service/cliente-service.js";
 
 const formulario = document.querySelector("[data-form]");
 
-const obtenerInformacion = () =>{
+const obtenerInformacion = async() =>{
     const url = new URL(window.location);
     const id = url.searchParams.get('id');
     if(id == null){
@@ -10,11 +10,21 @@ const obtenerInformacion = () =>{
     }
     const nombre= document.querySelector("[data-nombre]")
     const email= document.querySelector("[data-email]")
+    try{
+        const perfil = await clientServices.detalleCliente(id)
+        if(perfil.nombre && perfil.email){
+            nombre.value = perfil.nombre;
+            email.value = perfil.email;
+        }else{
+            throw new Error();
+        }
+
     
-    clientServices.detalleCliente(id).then((perfil) => {
-        nombre.value = perfil.nombre;
-        email.value = perfil.email;
-    });
+    }catch(error){
+        //console.log("catch error ---> ", error);
+        window.location.href = "/screens/error.html";
+
+    }
 
 }
 obtenerInformacion();
